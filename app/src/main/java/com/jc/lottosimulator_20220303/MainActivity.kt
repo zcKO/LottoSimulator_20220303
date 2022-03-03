@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
     // 당첨 번호를 보여줄 6개의 TextView 를 담아둘 ArrayList
     val mWinNumberTextViewList = ArrayList<TextView>()
 
+    // 화면이 어디인지 줄 필요가 없기 때문에 lateinit 대신 var 로 만듦.
+    var mBonusNum = 0     // 보너스 번호는 매 판마다 새로 뽑아야 가능하다. 변경 소지가 있다.
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -67,11 +70,19 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+            // 보너스 번호 생성 -> 1 ~ 45 중 하나, 당첨 번호와 겹치치 않게
+            while (true) {
+                val randomNum = ((Math.random() * 45) + 1).toInt()
 
-
-            // 보너스 번호 생성
+                if (mWinNumberList.contains(randomNum).not()) {
+                    // 겹치치 않는 숫자 활용
+                    mBonusNum = randomNum
+                    break
+                }
+            }
 
             // 생성된 보너스 번호 TextView 에 배치
+            txtBonusNum.text = mBonusNum.toString()
 
         }
     }
