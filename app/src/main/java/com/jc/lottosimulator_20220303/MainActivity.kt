@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     // 컴퓨터가 뽑은 당첨 번호 6개를 저장할 ArrayList
     val mWinNumberList = ArrayList<Int>()
+
+    // 당첨 번호를 보여줄 6개의 TextView 를 담아둘 ArrayList
+    val mWinNumberTextViewList = ArrayList<TextView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +25,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setValues() {
-
-
+        mWinNumberTextViewList.add(txtWinNum01)
+        mWinNumberTextViewList.add(txtWinNum02)
+        mWinNumberTextViewList.add(txtWinNum03)
+        mWinNumberTextViewList.add(txtWinNum04)
+        mWinNumberTextViewList.add(txtWinNum05)
+        mWinNumberTextViewList.add(txtWinNum06)
     }
 
     private fun setupEvents() {
@@ -50,9 +58,16 @@ class MainActivity : AppCompatActivity() {
             mWinNumberList.sort()   // 자바로 직접 작성하던 로직을 객체지향의 특성, 만들어져있는 기능 활용으로 대체
             Log.d("당첨 번호 목록", mWinNumberList.toString())
 
-            for (winNum in mWinNumberList) {
+//            for (winNum in mWinNumberList) {}
+            // for > 순회하면서, 당첨 번호 / 몇 번째 순회인지 필요 -> TextView 를 찾아야 한다.
+            mWinNumberList.forEachIndexed { index, winNum ->
+
+                // 순서에 맞는 TextView 추출 -> 문구로 당첨번호 설정
+                mWinNumberTextViewList[index].text = winNum.toString()
 
             }
+
+
 
             // 보너스 번호 생성
 
