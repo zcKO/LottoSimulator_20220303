@@ -1,10 +1,10 @@
 package com.jc.lottosimulator_20220303
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -95,10 +95,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkLottoRank() {
-
         // 내 벊소 목록 / 당첨 번호 목록 중, 같은 숫자가 몇개인치 체크
-        var currentCount = 0
+        var correctCount = 0
 
+        // 내 번호를 하니씩 조회
+        for (myNum in mMyNumbers) {
+            // 당첨 번호를 맞추었는지 확인 -> 당첨번호 목록에 내 번호가 들어있는지 확인
+            if (mWinNumberList.contains(myNum)) {
+                correctCount++
+            }
+        }
+
+        // 맞춘 갯 수에 따른 등수 판정
+        when (correctCount) {
+
+            6 -> {
+                Toast.makeText(this, "1등 입니다.", Toast.LENGTH_SHORT).show()
+            }
+            5 -> {
+                Toast.makeText(this, "임시 3등 입니다.", Toast.LENGTH_SHORT).show()
+            }
+            4 -> {
+                Toast.makeText(this, "4등 입니다.", Toast.LENGTH_SHORT).show()
+            }
+            3 -> {
+                Toast.makeText(this, "5등 입니다.", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(this, "낙첨 입니다.", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
     }
 
