@@ -113,7 +113,12 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "1등 입니다.", Toast.LENGTH_SHORT).show()
             }
             5 -> {
-                Toast.makeText(this, "임시 3등 입니다.", Toast.LENGTH_SHORT).show()
+                // 보너스 번호를 맞췄는지 => 보너스 번호가 내 번호 목록에 들어있는지 확인
+                if (mMyNumbers.contains(mBonusNum)) {
+                    Toast.makeText(this, "2등 입니다.", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "3등 입니다.", Toast.LENGTH_SHORT).show()
+                }
             }
             4 -> {
                 Toast.makeText(this, "4등 입니다.", Toast.LENGTH_SHORT).show()
