@@ -9,6 +9,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    // 내 번호 6개
+    // 코틀린은 단순 배열 초기화 int[] arr = { }; 은 지원하지 않는다.
+    // 숫자 목록을 파라미터로 넣으면, array 로 만들어주는 함수 실행
+    val mMyNumbers = arrayOf(13, 17, 23, 27, 36, 41)
+
     // 컴퓨터가 뽑은 당첨 번호 6개를 저장할 ArrayList
     val mWinNumberList = ArrayList<Int>()
 
@@ -84,7 +89,17 @@ class MainActivity : AppCompatActivity() {
             // 생성된 보너스 번호 TextView 에 배치
             txtBonusNum.text = mBonusNum.toString()
 
+            // 내 숫자 6개와 비교, 등수 판정
+            checkLottoRank()
         }
+    }
+
+    private fun checkLottoRank() {
+
+        // 내 벊소 목록 / 당첨 번호 목록 중, 같은 숫자가 몇개인치 체크
+        var currentCount = 0
+
+
     }
 
     private fun buyLotto() {
