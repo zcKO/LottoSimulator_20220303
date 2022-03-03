@@ -25,6 +25,13 @@ class MainActivity : AppCompatActivity() {
     var mUsedMoney = 0
     var mEarnMoney = 0L                  // 30억 이상의 당첨 대비. Long 타입으로 설정
 
+    // 각 등수별 횟 수 카운팅 변수
+    var rankCount1 = 0
+    var rankCount2 = 0
+    var rankCount3 = 0
+    var rankCount4 = 0
+    var rankCount5 = 0
+    var rankCountFail = 0
 
     // 화면이 어디인지 줄 필요가 없기 때문에 lateinit 대신 var 로 만듦.
     var mBonusNum = 0                    // 보너스 번호는 매 판마다 새로 뽑아야 가능하다. 변경 소지가 있다.
@@ -74,21 +81,29 @@ class MainActivity : AppCompatActivity() {
             6 -> {
                 // 30 억을 번 금액으로 추가
                 mEarnMoney += 3000000000
+                rankCount1++
             }
             5 -> {
                 // 보너스 번호를 맞췄는지 => 보너스 번호가 내 번호 목록에 들어있는지 확인
                 if (mMyNumbers.contains(mBonusNum)) {
                     mEarnMoney += 50000000
+                    rankCount2++
                 } else {
                     mEarnMoney += 2000000
+                    rankCount3++
                 }
             }
             4 -> {
                 mEarnMoney += 50000
+                rankCount4++
             }
             3 -> {
                 // 5 등 -> 5천원을 사용한 돈을 줄여주자.
-                mEarnMoney -= 5000
+                mUsedMoney -= 5000
+                rankCount5++
+            }
+            else -> {
+                rankCountFail++
             }
 
         }
@@ -96,6 +111,14 @@ class MainActivity : AppCompatActivity() {
         // 사용 금액 / 당첨 금액을 TextView 에 각각 반영
         txtUsedMoney.text = "${NumberFormat.getInstance().format(mUsedMoney)} 원"
         txtEarnMoney.text = "${NumberFormat.getInstance().format(mEarnMoney)} 원"
+
+        // 등수별 횟 수도 TextView 에 반영
+        txtRankCount1.text = "${rankCount1} 회"
+        txtRankCount2.text = "${rankCount2} 회"
+        txtRankCount3.text = "${rankCount3} 회"
+        txtRankCount4.text = "${rankCount4} 회"
+        txtRankCount5.text = "${rankCount5} 회"
+        txtRankCountFail.text = "${rankCountFail} 회"
 
     }
 
