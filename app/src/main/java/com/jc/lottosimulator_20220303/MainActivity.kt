@@ -26,8 +26,17 @@ class MainActivity : AppCompatActivity() {
         btnBuyLotto.setOnClickListener {
             // 6개의 당첨 번호 생성
             // 코틀린의 for 문은 for-each 문법 기반.
-            for(i in 1..5) {
-                Log.d("반복문 확인", "setupEvents: $i")
+            for (i in 0 until 6) {
+                // 괜찮은 번호가 나올 때 까지 무한 반복
+                while (true) {
+                    // 1 ~ 45의 랜덤 숫자, Math.random() 은 0 ~ 1 => 1 ~ 45.xxx 로 가공 -> int 로 캐스팅
+                    val randomNum = ((Math.random() * 45) + 1).toInt()
+                    // 중복 감사 통과 시 while break
+                    if (true) {
+                        break
+                    }
+
+                }
             }
 
             // 만들어진 당첨 번호 6개 -> TextView 에 표현
