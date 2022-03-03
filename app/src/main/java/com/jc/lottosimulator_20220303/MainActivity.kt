@@ -6,6 +6,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.NumberFormat
 
 class MainActivity : AppCompatActivity() {
 
@@ -92,9 +93,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        // 사용 금액 / 당첨 금액을 TextView 에 각각 반영
+        txtUsedMoney.text = "${NumberFormat.getInstance().format(mUsedMoney)} 원"
+        txtEarnMoney.text = "${NumberFormat.getInstance().format(mEarnMoney)} 원"
+
     }
 
     private fun buyLotto() {
+
+        mUsedMoney += 1000
 
         // 6개의 당첨 번호 생성
         // 코틀린의 for 문은 for-each 문법 기반.
