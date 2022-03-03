@@ -24,62 +24,62 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="\?"
-            android:textSize="25sp"/>
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/txtWinNum02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="\?"
             android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:text="\?"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/txtWinNum03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="\?"
             android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:text="\?"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/txtWinNum04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="\?"
             android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:text="\?"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/txtWinNum05"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="\?"
             android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:text="\?"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/txtWinNum06"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="\?"
             android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:text="\?"
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+"
             android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:text="+"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/txtBonusNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="\?"
             android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:text="\?"
+            android:textSize="25sp" />
 
     </LinearLayout>
 
@@ -87,52 +87,53 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="내 번호" />
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="13"
-            android:textSize="25sp"/>
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="17"
-            android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="23"
-            android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="27"
-            android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="36"
-            android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="41"
             android:layout_marginStart="10dp"
-            android:textSize="25sp"/>
+            android:text="36"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="41"
+            android:textSize="25sp" />
 
     </LinearLayout>
 
@@ -140,7 +141,50 @@
         android:id="@+id/btnBuyLotto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="로또 한장 구매하기"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:text="로또 한장 구매하기" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용한 금액 : " />
+
+        <TextView
+            android:id="@+id/txtUsedMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 원"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="당첨된 금액 : " />
+
+        <TextView
+            android:id="@+id/txtEarnMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 원"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
 
 </LinearLayout>
