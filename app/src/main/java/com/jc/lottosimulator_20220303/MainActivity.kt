@@ -38,6 +38,9 @@ class MainActivity : AppCompatActivity() {
     // 화면이 어디인지 줄 필요가 없기 때문에 lateinit 대신 var 로 만듦.
     var mBonusNum = 0                    // 보너스 번호는 매 판마다 새로 뽑아야 가능하다. 변경 소지가 있다.
 
+    // 현재 자동 구매가 진행 중인지 구별하는 변수
+    var isAutoNow = false
+
     // Handler 로 Thread 에 할일 할당 (postDelayed - 일정시간 지난 뒤에 할일 할당)
     lateinit var mHandler: Handler
 
@@ -94,10 +97,21 @@ class MainActivity : AppCompatActivity() {
             // 처음 눌리면 > 반복 구매 시작 > 1천만원 사용할 때까지 반복
             // 1회 로또 구매 명령 > 완료 되면 다시 1회 로드 구매 > .... 연속 클릭을 자동으로 하는 느낌
 
-            // Handler 에게 할 일로 처음 등록 (할 일 시작)
-            mHandler.post(buyLottoRunnable)
+            if (!isAutoNow) {
+                // Handler 에게 할 일로 처음 등록 (할 일 시작)
+                mHandler.post(buyLottoRunnable)
+                // 자동이 돌고 있다는 표식.
+                isAutoNow = true
+                btnAutoBuy.text = "자동 구매 중단하기"
 
-            // 반복 구매중에 눌리면 > 반복 종료
+            } else {  // 반복 구매중에 눌리면 > 반복 종료
+                // Handler 에 등록된 다음 할 일 (구매) 제거
+                mHandler.removeCallbacks(buyLottoRunnable)
+                isAutoNow = false
+                btnAutoBuy.text = "자동 구매 재개하기"
+
+            }
+
         }
 
     }
