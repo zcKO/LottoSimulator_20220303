@@ -1,6 +1,8 @@
 package com.jc.lottosimulator_20220303
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
@@ -36,6 +38,28 @@ class MainActivity : AppCompatActivity() {
     // 화면이 어디인지 줄 필요가 없기 때문에 lateinit 대신 var 로 만듦.
     var mBonusNum = 0                    // 보너스 번호는 매 판마다 새로 뽑아야 가능하다. 변경 소지가 있다.
 
+    // Handler 로 Thread 에 할일 할당 (postDelayed - 일정시간 지난 뒤에 할일 할당)
+    lateinit var mHandler: Handler
+
+    // handler 가 반복 실행 할 코드 (로또를 다시 구매)를 인터페이스를 이용해서, 변수로 저장.
+    val buyLottoRunnable = object : Runnable {
+        override fun run() {
+            // 물려 받은 추상 메서드 구현
+            // 할 일이 어떤건지 적는 함수
+
+            // 사용한 돈이 1천만원이 안된다면 추가 구매
+            if (mUsedMoney <= 10000000) {
+                buyLotto()
+                // Handler 에게 다음 할 일로, 이 코드를 다시 등록
+                mHandler.post(this)
+            } else {       // 그렇지 않다면, 할 일 정지
+                Toast.makeText(this@MainActivity, "자동 구매가 완료 되었습니다.", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,6 +70,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setValues() {
+
+        // 반복을 담당할 Handler 생성
+        mHandler = Handler(Looper.getMainLooper())
+
         mWinNumberTextViewList.add(txtWinNum01)
         mWinNumberTextViewList.add(txtWinNum02)
         mWinNumberTextViewList.add(txtWinNum03)
@@ -64,13 +92,8 @@ class MainActivity : AppCompatActivity() {
 
         btnAutoBuy.setOnClickListener {
             // 처음 눌리면 > 반복 구매 시작 > 1천만원 사용할 때까지 반복
-            // 단순 반복 시 반복 속도가 빨라서 UI 가 멈춘 것 처럼 보인다.
-            while (true) {
-                buyLotto()
-                if (mUsedMoney >= 10000000) {
-                    break
-                }
-            }
+            // 1회 로또 구매 명령 > 완료 되면 다시 1회 로드 구매 > .... 연속 클릭을 자동으로 하는 느낌
+
 
             // 반복 구매중에 눌리면 > 반복 종료
         }
